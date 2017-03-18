@@ -10,8 +10,9 @@ html
   body
     div.container
       div
-
         h1 Mull Report: #{ctx.project_name}
+
+        div.report_date #{ctx.report_date}
 
         div.summary.list-group id="top"
           div.list-group-item.list-group-item-info
@@ -29,6 +30,10 @@ html
           div.list-group-item.list-group-item-info
             | Killed Mutants:
             span.label.label-primary.pull-right = ctx.report.killed_mutants_count
+
+          div.list-group-item.list-group-item-info
+            | Total time:
+            span.label.label-primary.pull-right = ctx.total_duration
 
           div.list-group-item.list-group-item-info
             | Execution Time:

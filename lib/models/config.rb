@@ -7,6 +7,6 @@ class MullConfig
   property :rowid, Serial
 
   property :project_name, String
+  property :time_start, Integer
+  property :time_end, Integer
 end
-
-
