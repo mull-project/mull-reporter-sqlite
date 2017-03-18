@@ -46,6 +46,11 @@ class Context
     @tests ||= Test.all
   end
 
+  def report_date
+    time_start = @config.time_start
+    Time.at(time_start / 1000).strftime("%d.%m.%Y %H:%M:%S")
+  end
+
   def mutants
     @mutants ||= MutationResult.all
   end
@@ -102,6 +107,11 @@ class Context
   def duration_at_distance(distance)
     duration = mutants.all(:mutation_distance => distance).map(&:result).inject(0) { |value, result| value + result.duration }
     humanize_duration duration
+  end
+
+  def total_duration
+    total_duration = @config.time_end - @config.time_start
+    humanize_duration total_duration
   end
 
   def execution_duration

@@ -38,3 +38,8 @@ div.list-group-item.pre {
   padding: 0;
 }
 
+div.report_date {
+  color: gray;
+  padding: 0 10px 15px 0;
+  font-size: 0.95em;
+}
