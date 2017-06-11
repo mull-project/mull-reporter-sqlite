@@ -51,8 +51,12 @@ class MutationResult
     result.status.equal? 4
   end
 
-  def dryRun?
+  def abnormal_exit?
     result.status.equal? 5
+  end
+
+  def dryRun?
+    result.status.equal? 6
   end
 
   def status
@@ -66,6 +70,8 @@ class MutationResult
     when 4
       "Crashed"
     when 5
+      "Abnormal Exit"
+    when 6
       "Dry Run"
     else
       "unknown"
