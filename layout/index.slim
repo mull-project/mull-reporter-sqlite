@@ -206,6 +206,8 @@ html
                       span.label.label-default = mutation.status
                     - if mutation.crashed?
                       span.label.label-danger = mutation.status
+                    - if mutation.abnormal_exit?
+                      span.label.label-danger = mutation.status
                     - if mutation.dryRun?
                       span.label.label-info = mutation.status
 
