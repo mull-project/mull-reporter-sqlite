@@ -42,6 +42,10 @@ class ReportPresenter
   end
 
   def mutation_score
+    if @mutants.count == 0
+      return "100%"
+    end
+
     score = (@killed_mutants_count * 100.0 ) / @mutants.count
     "#{score.ceil}%"
   end
