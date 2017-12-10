@@ -192,6 +192,10 @@ html
                 | Mutation Location (source code):
               div.list-group-item.pre
                 div.source-code = mutant.source
+              div.list-group-item
+                | Description:
+              div.list-group-item.pre
+                div.source-code = mutant.diagnostics
 
             - for mutation in mutant.tests
               div.list-group-item
@@ -217,15 +221,6 @@ html
                     span.label.label-primary = "Duration: #{mutation.duration}"
 
                 div.list-group
-                  div.list-group-item
-                    | Caller path:
-                  div.list-group-item.pre
-                    div.source-code = mutation.caller_path
-
-                  div.list-group-item
-                    | Caller path (source code):
-                  div.list-group-item.pre
-                    div.source-code = mutation.caller_path_source_code
 
                   div.list-group-item
                     | stdout:
