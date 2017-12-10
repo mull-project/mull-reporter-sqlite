@@ -34,10 +34,6 @@ class MutantPresenter
     "#{@mutation_point.filename}:#{@mutation_point.line_number}"
   end
 
-  def call_path
-    @mutation_point.__tmp_caller_path
-  end
-
   def test_names
     @tests.map(&:test_id).join("\n")
   end
@@ -55,6 +51,10 @@ class MutantPresenter
     rescue Exception => e
       return "not_found #{e}"
     end
+  end
+
+  def diagnostics
+    @mutation_point.diagnostics
   end
 
   def tests
