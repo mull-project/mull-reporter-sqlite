@@ -1,19 +1,7 @@
 require 'rubygems'
-require 'data_mapper'
+require 'sequel'
 
-class MutationPointDebug
-  include DataMapper::Resource
-  storage_names[:default] = "mutation_point_debug"
-  property :rowid, Serial
-
-  property :function, String
-  property :basic_block, String
-  property :instruction, String
-  property :unique_id, String
-
-  property :filename, String
-  property :line_number, Integer
-  property :column_number, Integer
+class MutationPointDebug < Sequel::Model(:mutation_point_debug)
 
   def source
     begin

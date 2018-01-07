@@ -1,10 +1,12 @@
 require 'rubygems'
-require 'data_mapper'
+require 'sequel'
 require 'slim'
 require 'uri'
 
-require './lib/services/source_manager'
-require './lib/services/mutant_sorter'
+report_path = ARGV[0]
+report_name = ARGV[1]
+
+DB = Sequel.connect("sqlite://#{report_path}")
 
 require './lib/models/config'
 require './lib/models/execution_result'
@@ -24,8 +26,6 @@ def humanize_duration millis
     end
   }.compact.reverse.join(' ')
 end
-
-DataMapper.finalize
 
 class Context
   def initialize(mutants, config)
@@ -115,29 +115,23 @@ class Context
   end
 
   def execution_duration
-    duration = ExecutionResult.all.sum(:duration)
+    duration = ExecutionResult.select{sum(:duration)}.first.values.first[1]
     humanize_duration duration
   end
 
   def minimum_mutation_distance
-    mutants.min(:mutation_distance)
+    MutationResult.select{min(:mutation_distance)}.first.values.first[1]
   end
 
   def maximum_mutation_distance
-    mutants.max(:mutation_distance)
+    MutationResult.select{max(:mutation_distance)}.first.values.first[1]
   end
 
   def mean_mutation_distance
-    mutants.avg(:mutation_distance).round(0)
+    MutationResult.select{avg(:mutation_distance)}.first.values.first[1].round(0)
   end
 
 end
-
-report_path = $ARGV[0]
-report_name = $ARGV[1]
-
-#DataMapper::Logger.new($stdout, :debug)
-DataMapper.setup(:default, "sqlite://#{report_path}")
 
 def render(context, layout_name, output)
   layout = File.read("./layout/#{layout_name}.slim")

@@ -6,11 +6,6 @@ class ReportPresenter
     sorter = MutantSorter.new
     @mutants = sorter.sort(mutants)
 
-    # operator_names = @mutants.map(&:operator).uniq
-    # @operators = operator_names.map do |name|
-    #   MutationOperatorPresenter.new(name)
-    # end
-
     @killed_mutants_count = @mutants.count { |m| m.killed? }
     @survived_mutants_count = @mutants.count { |m| m.survived? }
     @weakly_killed_mutants_count = @mutants.count { |m| m.weakly_killed? }

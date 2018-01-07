@@ -1,20 +1,11 @@
 require 'rubygems'
-require 'data_mapper'
+require 'sequel'
 
-class MutationPoint
-  include DataMapper::Resource
-  storage_names[:default] = "mutation_point"
-  property :rowid, Serial
-
-  property :mutation_operator, String
-  property :module_name, String
-  property :filename, String
-  property :line_number, Integer
-  property :column_number, Integer
-  property :unique_id, String
-  property :diagnostics, String
-
-  has n, :mutation_results, :child_key => [ :mutation_point_id ], :parent_key => [ :unique_id ]
-
+class MutationPoint < Sequel::Model(:mutation_point)
+  one_to_many :mutation_results,
+    class: :MutationResult,
+    key: :mutation_point_id,
+    primary_key: :unique_id,
+    eager: [:result]
 end
 
