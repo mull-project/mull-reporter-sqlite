@@ -1,14 +1,6 @@
 require 'rubygems'
-require 'data_mapper'
+require 'sequel'
 
-class ExecutionResult
-  include DataMapper::Resource
-  storage_names[:default] = "execution_result"
-  property :rowid, Serial
-
-  property :status, Integer
-  property :duration, Integer
-  property :stderr, String
-  property :stdout, String
+class ExecutionResult < Sequel::Model(:execution_result)
 end
 

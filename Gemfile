@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
-gem 'data_mapper'
-gem 'dm-sqlite-adapter'
+gem 'sequel'
+gem 'sqlite3'
 gem 'slim'
 gem 'rspec'
 
