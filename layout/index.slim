@@ -214,6 +214,8 @@ html
                       span.label.label-danger = mutation.status
                     - if mutation.dryRun?
                       span.label.label-info = mutation.status
+                    - if mutation.failFast?
+                      span.label.label-info = mutation.status
 
                   p
                     span.label.label-primary = "Distance: #{mutation.mutation_distance}"

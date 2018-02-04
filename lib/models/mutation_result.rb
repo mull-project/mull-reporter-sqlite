@@ -31,6 +31,10 @@ class MutationResult < Sequel::Model(:mutation_result)
     result.status.equal? 6
   end
 
+  def failFast?
+    result.status.equal? 7
+  end
+
   def status
     case result.status
     when 1
@@ -45,6 +49,8 @@ class MutationResult < Sequel::Model(:mutation_result)
       "Abnormal Exit"
     when 6
       "Dry Run"
+    when 7
+      "Fail Fast"
     else
       "unknown"
     end
