@@ -17,7 +17,9 @@ REPORT_NAME=$(shell basename $(REPORT) | cut -d"." -f1)
 build: bootstrap
 	bundle exec ruby render.rb $(REPORT) $(REPORT_NAME)
 	open ./build/$(REPORT_NAME).html
-	#open ./build/$(REPORT_NAME)_debug.html
+	if [ -a ./build/$(REPORT_NAME)_debug.html ]; then\
+    open ./build/$(REPORT_NAME)_debug.html; \
+  fi
 
 bootstrap: build/css build/js build/fonts
 

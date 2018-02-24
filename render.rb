@@ -150,5 +150,7 @@ mutants = MutationPoint.all.map { |mp|
 ctx = Context.new(mutants, MullConfig.first)
 
 render ctx, "index", report_name
-#render ctx, "debug", "#{report_name}_debug"
+if ctx.debug_mutation_points.count != 0
+  render ctx, "debug", "#{report_name}_debug"
+end
 
