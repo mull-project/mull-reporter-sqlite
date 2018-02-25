@@ -59,6 +59,10 @@ class Context
     MutationPoint.all
   end
 
+  def test_runs
+    ExecutionResult.all
+  end
+
   def debug_mutation_points
     MutationPointDebug.all
   end
