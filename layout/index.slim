@@ -29,6 +29,10 @@ html
             span.label.label-primary.pull-right = ctx.report.mutants.count
 
           div.list-group-item.list-group-item-info
+            | Test runs:
+            span.label.label-primary.pull-right = ctx.test_runs.count
+
+          div.list-group-item.list-group-item-info
             | Survived Mutants:
             span.label.label-primary.pull-right = ctx.report.survived_mutants_count
 
@@ -77,7 +81,7 @@ html
             span.label.label-primary.pull-right = ctx.minimum_mutation_distance
 
           div.list-group-item
-            | Mean distance:
+            | Average distance:
             span.label.label-primary.pull-right = ctx.mean_mutation_distance
 
           div.list-group-item
